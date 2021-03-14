@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         DaggerAppComponent.builder().application(this.application).build().inject(this)
+      //  DaggerAppComponent.builder().build().inject(this)
 sharedPrefMan.getFromSharedPrefences("test")
 //      sharedPrefMan.getFromSharedPrefences("test")
     }

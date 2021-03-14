@@ -1,5 +1,6 @@
 package com.example.providecontextdi
 
+import android.app.Application
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
@@ -12,6 +13,7 @@ class SharedPrefMan(contextx: Context){
     var context=contextx
 //    @Inject
 //    lateinit var context: Context
+    @Inject
     lateinit var sharedPreferences: SharedPreferences
 
     init {
@@ -19,8 +21,10 @@ class SharedPrefMan(contextx: Context){
         val defultValue = ""
        // val token = sharedPrefMan.getString("TOKEN", defultValue)
 
+      //  getFromSharedPrefences("test")
+        DaggerAppComponent.builder().application(context.applicationContext as Application).build().inject(this)
+     //  DaggerAppComponent.builder().build().inject(this)
         getFromSharedPrefences("test")
-
     }
     public fun getFromSharedPrefences(key:String): String {
         //   val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
@@ -34,7 +38,7 @@ class SharedPrefMan(contextx: Context){
 
 
         val PATH: String =
-            context.getSharedPreferences("PATH", MODE_PRIVATE).getString(key, "ppp").toString()
+        sharedPreferences.getString(key, "ppp").toString()
 
 
 //        val editor = sharedPreferences.edit()
